@@ -8,8 +8,7 @@ namespace EasyShareApp.Models
 {
     public partial class Document
     {
-        [DataType(DataType.Text)]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Nome do Arquivo")]
         public string Name { get; set; }

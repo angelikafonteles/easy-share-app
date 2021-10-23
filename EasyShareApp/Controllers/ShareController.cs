@@ -46,8 +46,21 @@ namespace EasyShareApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email,Key,Password,Documents")] Register register)
         {
-            register.Key = Util.GetUniqueKey();
-            register.Password = Util.Encrypt(register.Password.Trim());
+            try
+            {
+                register.Key = Util.GetUniqueKey();
+                if (register.Password.Length > 6 &&
+                    register.Password.Length < 11)
+                {
+                    register.Password = Util.Encrypt(register.Password.Trim());
+                }
+                else
+                    throw new Exception("A senha deve ter entre 6 a 10 caracteres");
+            }
+            catch(Exception e)
+            {
+                return RedirectToAction(nameof(CustomError), new { message = e.Message });
+            }
 
             if (ModelState.IsValid)
             {
@@ -106,9 +119,9 @@ namespace EasyShareApp.Controllers
             return View(document);
         }
 
-        public async Task<IActionResult> Edit(string? id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            var document = await _documentService.FindByIdAsync(id);
+            var document = await _documentService.FindByIdAsync((int)id);
 
             try
             {
@@ -126,7 +139,7 @@ namespace EasyShareApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,InstantExpiration")] Document document)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,InstantExpiration")] Document document)
         {
             DateTime now = DateTime.Now;
             var myDocument = await _documentService.FindByIdAsync(id);
@@ -161,9 +174,9 @@ namespace EasyShareApp.Controllers
             return RedirectToAction(nameof(MenuList), myDocument.Register);
         }
 
-        public async Task<IActionResult> Delete(string? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var document = await _documentService.FindByIdAsync(id);
+            var document = await _documentService.FindByIdAsync((int)id);
 
             try
             {
@@ -182,7 +195,7 @@ namespace EasyShareApp.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var document = await _documentService.FindByIdAsync(id);
             await _documentService.RemoveAsync(id);
@@ -235,9 +248,9 @@ namespace EasyShareApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Download(string? id)
+        public async Task<IActionResult> Download(int? id)
         {
-            var document = await _documentService.FindByIdAsync(id);
+            var document = await _documentService.FindByIdAsync((int)id);
 
             try
             {

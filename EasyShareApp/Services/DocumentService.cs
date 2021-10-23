@@ -28,7 +28,7 @@ namespace EasyShareApp.Services
             return await _context.Document.ToListAsync();
         }
 
-        public async Task<Document> FindByIdAsync(string id)
+        public async Task<Document> FindByIdAsync(int id)
         {
             return await _context.Document.Include(obj => obj.Register).FirstOrDefaultAsync(obj => obj.Id == id);
         }
@@ -44,7 +44,7 @@ namespace EasyShareApp.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveAsync(string id)
+        public async Task RemoveAsync(int id)
         {
             try
             {
@@ -97,7 +97,8 @@ namespace EasyShareApp.Services
         {
             DateTime now = DateTime.Now;
             document.InstantCreation = now;
-            document.Id = Guid.NewGuid().ToString();
+            document.Id = 0;
+            //document.Id = Guid.NewGuid().ToString();
 
             if (string.IsNullOrEmpty(document.Name))
             {
