@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pomelo.EntityFrameworkCore.MySql" />
+    <None Remove="Services\" />
+    <None Remove="Services\Exceptions\" />
+    <None Remove="Data\" />
+    <None Remove="Utils\" />
+    <None Remove="Models\Enums\" />
+    <None Remove="Models\ViewModels\" />
+    <None Remove="Views\Share\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Exceptions\" />
+    <Folder Include="Data\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Models\Enums\" />
+    <Folder Include="Models\ViewModels\" />
+    <Folder Include="Views\Share\" />
+  </ItemGroup>
+</Project>

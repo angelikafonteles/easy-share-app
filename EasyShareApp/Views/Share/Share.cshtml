@@ -1,0 +1,30 @@
+@model EasyShareApp.Models.Document
+
+@{ ViewData["Title"] = "Share"; }
+
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Arquivo compartilhado</h4>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+                    <dd>@Html.DisplayFor(model => model.Name)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.InstantExpiration)</dt>
+                    <dd>@Html.DisplayFor(model => model.InstantExpiration)</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                @if (Model.Attachment != null)
+                {
+                    <form asp-action="Download" asp-route-id="@Model.Id">
+                        <input type="submit" class="btn btn-primary" data-dismiss="modal" value="Download" />
+                    </form>
+                }
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

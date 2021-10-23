@@ -1,0 +1,39 @@
+@model EasyShareApp.Models.Register
+
+@{ ViewData["Title"] = "Index"; }
+
+<div class="jumbotron text-center bg-default">
+    <h1 class="display-3">Easy for you Share</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Bem-vindo ao Easy Share!</h2>
+        <p>
+            Making everything more simple:)
+        </p>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-light mb-3" style="max-width: 60rem;">
+            <div class="card-header">Upload Arquivos</div>
+            <div class="card-body text-center">
+                <h4 class="card-title">Faça seus uploads por aqui</h4>
+                <img src="~/images/upload-file.png" style="height:70px; width: 70px" />
+                <p></p>
+                <p><a class="btn btn-light" asp-action="Create">Novo &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-light mb-3" style="max-width: 60rem;">
+            <div class="card-header">Download Arquivos</div>
+            <div class="card-body text-center">
+                <h4 class="card-title">Busque seus arquivos aqui</h4>
+                <img src="~/images/download-file.png" style="height:70px; width: 70px" />
+                <p></p>
+                <p><a class="btn btn-light" asp-action="GetFile">Buscar &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+</div>

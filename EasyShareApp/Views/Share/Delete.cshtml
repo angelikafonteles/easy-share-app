@@ -1,0 +1,36 @@
+@model EasyShareApp.Models.Document
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="~/images/trash-alert.png" style="height: 50px; width: 50px; margin: 0px 2px;" />
+                <h4 class="modal-title">Você está certo de que quer apagar?</h4>
+                <a asp-action="MenuList" type="button" class="close" data-dismiss="modal" asp-route-id="@Model.RegisterId">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+                    <dd>@Html.DisplayFor(model => model.Name)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.InstantExpiration)</dt>
+                    <dd>@Html.DisplayFor(model => model.InstantExpiration)</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-actions no-color">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Apagar" class="btn btn-danger" />
+                    </div>
+                }
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
