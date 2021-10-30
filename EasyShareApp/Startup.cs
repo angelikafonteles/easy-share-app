@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using EasyShareApp.Data;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
 using EasyShareApp.Services;
 
@@ -81,24 +82,25 @@ namespace EasyShareApp
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            //app.UseRouting();
-
+            app.UseRouting();
+            //app.UseCors();
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            //app.UseRouting(routes => {
+            //    routes.MapControllerRoute(
+            //        name: "default",
+            //        template: "{controller=Share}/{action=Index}/{id?}");
+            //    routes.MapRazorPages();
+            //});MapRazorPages
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Share}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
-            /*
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-            */
         }
     }
 }
