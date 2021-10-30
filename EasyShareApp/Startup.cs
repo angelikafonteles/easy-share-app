@@ -12,6 +12,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using System.Collections.Generic;
 using EasyShareApp.Services;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace EasyShareApp
 {
@@ -48,7 +49,14 @@ namespace EasyShareApp
             
             services.AddDbContext<DatabaseContext>(
                 options => options.UseMySql(Configuration.GetConnectionString("DatabaseContext"),
-                    builder => builder.MigrationsAssembly("EasyShareApp")));
+                    mySqlOptions =>
+                    {
+                        mySqlOptions.ServerVersion(new Version(5, 6, 50), ServerType.MySql)
+                        .EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null);
+                    }));
 
             services.AddScoped<DocumentService>();
             services.AddScoped<RegisterService>();
@@ -85,13 +93,6 @@ namespace EasyShareApp
             //app.UseCors();
             //app.UseAuthentication();
             app.UseAuthorization();
-
-            //app.UseRouting(routes => {
-            //    routes.MapControllerRoute(
-            //        name: "default",
-            //        template: "{controller=Share}/{action=Index}/{id?}");
-            //    routes.MapRazorPages();
-            //});MapRazorPages
 
             app.UseEndpoints(endpoints =>
             {

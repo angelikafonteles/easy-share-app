@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyShareApp.Models;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace EasyShareApp.Data
 {
@@ -20,7 +21,20 @@ namespace EasyShareApp.Data
 
         public DbSet<Document> Document { get; set; }
         public DbSet<Register> Register { get; set; }
-
+        /*
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySql("server=us-cdbr-east-04.cleardb.com;database=heroku_b5fcb6e5595165d;user=bf74caefbf3b42;password=8bd994f0;SslMode=None",
+                   mySqlOptions =>
+                   {
+                       mySqlOptions.ServerVersion(new Version(5, 6, 50), ServerType.MySql)
+                       .EnableRetryOnFailure(
+                       maxRetryCount: 10,
+                       maxRetryDelay: TimeSpan.FromSeconds(30),
+                       errorNumbersToAdd: null);
+                   });
+        }
+        */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Document>(entity =>
