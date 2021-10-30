@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using EasyShareApp.Data;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
 using EasyShareApp.Services;
 
@@ -36,7 +35,7 @@ namespace EasyShareApp
             */
             //services.AddResponseCaching();
             //services.AddControllersWithViews();
-
+            services.AddResponseCaching();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -84,7 +83,7 @@ namespace EasyShareApp
 
             app.UseRouting();
             //app.UseCors();
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             //app.UseRouting(routes => {
