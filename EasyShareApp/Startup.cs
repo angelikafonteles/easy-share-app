@@ -34,9 +34,9 @@ namespace EasyShareApp
             {
             }
             */
-            //services.AddResponseCaching();
-            //services.AddControllersWithViews();
             services.AddResponseCaching();
+            //services.AddControllersWithViews();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -57,6 +57,7 @@ namespace EasyShareApp
                         maxRetryDelay: TimeSpan.FromSeconds(30),
                         errorNumbersToAdd: null);
                     }));
+            //builder => builder.MigrationsAssembly("EasyShareApp")
 
             services.AddScoped<DocumentService>();
             services.AddScoped<RegisterService>();
@@ -90,8 +91,6 @@ namespace EasyShareApp
             app.UseCookiePolicy();
 
             app.UseRouting();
-            //app.UseCors();
-            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
