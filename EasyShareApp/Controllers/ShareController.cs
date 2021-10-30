@@ -49,7 +49,7 @@ namespace EasyShareApp.Controllers
             try
             {
                 register.Key = Util.GetUniqueKey();
-                if (register.Password.Length > 6 &&
+                if (register.Password.Length >= 6 &&
                     register.Password.Length < 11)
                 {
                     register.Password = Util.Encrypt(register.Password.Trim());

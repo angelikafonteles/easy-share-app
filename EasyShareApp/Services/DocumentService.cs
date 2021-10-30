@@ -98,7 +98,6 @@ namespace EasyShareApp.Services
             DateTime now = DateTime.Now;
             document.InstantCreation = now;
             document.Id = 0;
-            //document.Id = Guid.NewGuid().ToString();
 
             if (string.IsNullOrEmpty(document.Name))
             {
