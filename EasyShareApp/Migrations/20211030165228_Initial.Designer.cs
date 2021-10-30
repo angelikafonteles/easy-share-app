@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyShareApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211030133211_Initial")]
+    [Migration("20211030165228_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

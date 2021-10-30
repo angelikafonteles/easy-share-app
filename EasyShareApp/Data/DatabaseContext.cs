@@ -26,7 +26,6 @@ namespace EasyShareApp.Data
         {
             modelBuilder.Entity<Document>(entity =>
             {
-                //entity.Property(i => i.Id).HasMaxLength(196);
                 entity.Property(i => i.InstantCreation).HasColumnType("datetime");
                 entity.Property(i => i.InstantExpiration).HasColumnType("datetime");
             });

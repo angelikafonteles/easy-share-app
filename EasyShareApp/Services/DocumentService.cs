@@ -95,7 +95,7 @@ namespace EasyShareApp.Services
 
         public Document FormatDocUpload(Document document)
         {
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now.ToLocalTime();
             document.InstantCreation = now;
             document.Id = 0;
 
@@ -132,7 +132,7 @@ namespace EasyShareApp.Services
 
         public FileContentResult FormatDocDownload(Document document)
         {
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now.ToLocalTime();
 
             if (CheckFileAvailable(document))
             {
@@ -159,7 +159,7 @@ namespace EasyShareApp.Services
         public bool CheckFileAvailable(Document document)
         {
             bool result = true;
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now.ToLocalTime();
 
             if (document.InstantExpiration < now)
             {
@@ -173,6 +173,7 @@ namespace EasyShareApp.Services
         public (bool, string) CheckValidDate(Document document)
         {
             DateTime now = DateTime.Now.ToLocalTime();
+
             bool result = true;
             string msg = string.Empty;
 

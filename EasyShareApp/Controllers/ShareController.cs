@@ -141,7 +141,7 @@ namespace EasyShareApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,InstantExpiration")] Document document)
         {
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now.ToLocalTime();
             var myDocument = await _documentService.FindByIdAsync(id);
             try
             {
