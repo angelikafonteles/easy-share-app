@@ -20,7 +20,7 @@ namespace EasyShareApp.Models
         [Required(ErrorMessage = "Informe a data da expiração")]
         [Display(Name = "Data/Hora de Expiração")]
         [DataType(DataType.DateTime)]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
         public DateTime InstantExpiration { get; set; }
 
         [Display(Name = "Anexo")]

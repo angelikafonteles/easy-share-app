@@ -172,7 +172,7 @@ namespace EasyShareApp.Services
 
         public (bool, string) CheckValidDate(Document document)
         {
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now.ToLocalTime();
             bool result = true;
             string msg = string.Empty;
 
