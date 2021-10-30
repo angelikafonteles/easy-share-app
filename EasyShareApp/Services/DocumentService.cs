@@ -54,7 +54,7 @@ namespace EasyShareApp.Services
             }
             catch (DbUpdateException e)
             {
-                throw new IntegrityException("Documento não pôde ser apagado");
+                throw new IntegrityException($"Documento não pôde ser apagado. Error: {e.Message}");
             }
         }
 
@@ -71,7 +71,7 @@ namespace EasyShareApp.Services
             }
             catch (DbUpdateException e)
             {
-                throw new IntegrityException("Documento não pôde ser apagado");
+                throw new IntegrityException($"Documento não pôde ser apagado. Error: {e.Message}");
             }
         }
 

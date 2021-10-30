@@ -46,7 +46,7 @@ namespace EasyShareApp.Services
             }
             catch (DbUpdateException e)
             {
-                throw new IntegrityException("Registro não pôde ser apagado");
+                throw new IntegrityException($"Registro não pôde ser apagado. Error: {e.Message}");
             }
         }
 
