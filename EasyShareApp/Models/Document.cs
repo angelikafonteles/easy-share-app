@@ -28,15 +28,6 @@ namespace EasyShareApp.Models
 
         public Extension Extension { get; set; }
 
-        public string Path { get; set; }
-
-        public bool DownloadLimitToggle { get; set; }
-
-        [Display(Name = "Limite de downloads")]
-        public int DownloadLimit { get; set; }
-
-        public int Count { get; set; }
-
         public Register Register { get; set; }
         public int RegisterId { get; set; }
 

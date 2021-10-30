@@ -34,10 +34,6 @@ namespace EasyShareApp.Migrations
                     InstantExpiration = table.Column<DateTime>(type: "datetime", nullable: false),
                     Attachment = table.Column<byte[]>(nullable: true),
                     Extension = table.Column<int>(nullable: false),
-                    Path = table.Column<string>(nullable: true),
-                    DownloadLimitToggle = table.Column<bool>(nullable: false),
-                    DownloadLimit = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false),
                     RegisterId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

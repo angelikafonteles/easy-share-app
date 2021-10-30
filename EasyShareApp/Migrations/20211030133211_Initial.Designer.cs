@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyShareApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211023202737_Initial")]
+    [Migration("20211030133211_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,15 +28,6 @@ namespace EasyShareApp.Migrations
                     b.Property<byte[]>("Attachment")
                         .HasColumnType("longblob");
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DownloadLimit")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("DownloadLimitToggle")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<int>("Extension")
                         .HasColumnType("int");
 
@@ -47,9 +38,6 @@ namespace EasyShareApp.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Path")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("RegisterId")
