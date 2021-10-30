@@ -11,8 +11,12 @@
                 <h4 class="modal-title">Erro</h4>
             </div>
             <div class="modal-body">
-                <p>Mensagem:</p>
-                <p class="modal-title text-danger">@Model.Message</p>
+                @if (Model.ShowRequestId)
+                {
+                    <p>
+                        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                    </p>
+                }
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
