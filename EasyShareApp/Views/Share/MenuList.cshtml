@@ -6,9 +6,9 @@
 <h2>Menu</h2>
 <div>
     <p>
-        <a asp-action="Upload" class="btn btn-primary" asp-route-id="@Model.Id"> Adicionar Arquivo</a>
-        <a asp-action="DeleteForce" class="btn btn-danger" asp-route-id="@Model.Id">Apagar Tudo</a>
-        <a asp-action="ConfirmationPage" type="button" class="btn btn-outline-secondary" asp-route-id="@Model.Id">Sair</a>
+        <a asp-action="Upload" class="btn btn-primary" asp-route-id="@Model.Id"> Adicionar Arquivo <i class="glyphicon glyphicon-open"></i></a>
+        <a asp-action="DeleteForce" class="btn btn-danger" asp-route-id="@Model.Id"> Apagar Tudo <i class="glyphicon glyphicon-trash"></i></a>
+        <a asp-action="ConfirmationPage" type="button" class="btn btn-outline-secondary" asp-route-id="@Model.Id"> Sair </a>
     </p>
 </div>
 <div>
@@ -22,7 +22,6 @@
                     @Html.DisplayName("Data/Hora de Expiração")
                 </th>
                 <th>
-                    @Html.DisplayName("Anexo")
                 </th>
             </tr>
         </thead>
@@ -33,36 +32,29 @@
                 @foreach (var item in Model.Documents)
                 {
                     //FIXME
-                    string date =  (item.InstantExpiration - (item.InstantExpiration.AddHours(3) - item.InstantExpiration.AddMilliseconds(0.1))).ToString();
+                    string date = (item.InstantExpiration - (item.InstantExpiration.AddHours(3) - item.InstantExpiration.AddMilliseconds(0.1))).ToString();
 
-                    <tr class="table-info">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayName(date)
-                            <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id">Editar</a>
-                            <a asp-action="Delete" class="btn btn-default" asp-route-id="@item.Id">Apagar</a>
-                        </td>
-                        <td>
-
-                            @if (item.Attachment == null)
-                            {
-                                <a asp-action="Upload" class="btn btn-default" asp-route-id="@item.Id">Upload</a>}
-                            @if (item.Attachment != null)
-                            {
-                                <form asp-action="Download" asp-route-id="@item.Id">
-                                <input type="submit" class="btn btn-default" value="Download" />
-                                </form>}
-                        </td>
-                    </tr>
+                <tr class="table-info">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayName(date)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a asp-action="Delete" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i></a>
+                        @if (item.Attachment == null)
+                        {
+                <a asp-action="Upload" class="btn btn-default" asp-route-id="@item.Id">Upload </a>}
+                        @if (item.Attachment != null)
+                        {
+                <a asp-action="Download" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-download-alt"></i></a>}
+                    </td>
+                </tr>
                 }
             </tbody>
         }
     </table>
-        
-</div>
-<div>
-    <p>
-    </p>
+
 </div>

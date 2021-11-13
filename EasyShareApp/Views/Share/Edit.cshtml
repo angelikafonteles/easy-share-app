@@ -2,13 +2,14 @@
 
 @{ ViewData["Title"] = "Edit"; }
 
-<div class="modal-dialog" role="document">
+<div class="modal-dialog">
     <div class="modal-content">
         @using (Html.BeginForm())
         {
             <div class="modal-header">
                 <h4 class="modal-title">Editar</h4>
-                <a asp-action="MenuList" type="button" class="close" data-dismiss="modalx" asp-route-id="@Model.RegisterId">
+                <a asp-action="MenuList" type="button" class="close" asp-route-id="@Model.RegisterId">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </a>
             </div>
 
