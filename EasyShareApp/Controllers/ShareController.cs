@@ -96,6 +96,7 @@ namespace EasyShareApp.Controllers
         {
             try
             {
+                //FIXME
                 document.InstantExpiration = document.InstantExpiration.AddHours(3);
                 if (!_documentService.CheckValidDate(document).Item1)
                 {
@@ -142,8 +143,9 @@ namespace EasyShareApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,InstantExpiration")] Document document)
         {
-            DateTime now = DateTime.UtcNow;
+            //FIXME
             document.InstantExpiration = document.InstantExpiration.AddHours(3);
+            DateTime now = DateTime.UtcNow;
             var myDocument = await _documentService.FindByIdAsync(id);
             try
             {
