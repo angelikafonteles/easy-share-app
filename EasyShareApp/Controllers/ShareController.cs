@@ -225,6 +225,25 @@ namespace EasyShareApp.Controllers
             return View(register);
         }
 
+        public async Task<IActionResult> Share(int? id)
+        {
+            var register = await _registerService.FindByIdAsync((int)id);
+
+            try
+            {
+                if (register == null)
+                {
+                    throw new Exception("Registro não encontrado");
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction(nameof(CustomError), new { message = e.Message });
+            }
+
+            return View(register);
+        }
+
         public async Task<IActionResult> DeleteForce(int? id)
         {
             var register = await _registerService.FindByIdAsync((int)id);

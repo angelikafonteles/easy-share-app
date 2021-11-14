@@ -7,16 +7,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <img src="~/images/pen-drive-close.png" style="height: 50px; width: 50px; margin: 0px 2px;" />
-                <h4 class="modal-title">Anote a chave</h4>
+                <h4 class="modal-title">Copie a chave</h4>
                 <a asp-action="MenuList" class="close" asp-route-id="@Model.Id">
                     <span aria-hidden="true">x</span><span></span>
                 </a>
             </div>
             <div class="modal-body">
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.Key)</dt>
-                    <dd>@Html.DisplayFor(model => model.Key)</dd>
-                </dl>
+                <div class="col-md-10 text-center">
+                    <label asp-for="Key" class="control-label"></label>
+                    <input type="text" value="@Model.Key" id="key">
+                    <button class="glyphicon glyphicon-copy clipboard"></button>
+                </div>
             </div>
             <div class="modal-footer">
                 <a asp-action="Index" type="button" class="btn btn-outline-secondary">Sair</a>
@@ -24,3 +25,30 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".clipboard").click(function () {
+
+                /* Get the text field */
+                var copyText = document.getElementById("key");
+
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                navigator.clipboard
+                    .writeText(copyText.value)
+                    .then(() => {
+                        alert("Copiado com sucesso :)");
+                    })
+                    .catch(() => {
+                        alert("Oops! Alguma coisa deu errado :(");
+                    });
+            });
+        })
+    </script>
+}
+        

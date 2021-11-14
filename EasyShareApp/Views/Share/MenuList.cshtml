@@ -6,55 +6,57 @@
 <h2>Menu</h2>
 <div>
     <p>
-        <a asp-action="Upload" class="btn btn-primary" asp-route-id="@Model.Id"> Adicionar Arquivo <i class="glyphicon glyphicon-open"></i></a>
+        <a asp-action="Upload" class="btn btn-primary" asp-route-id="@Model.Id"> Adicionar Arquivo <i class="glyphicon glyphicon-cloud-upload"></i></a>
         <a asp-action="DeleteForce" class="btn btn-danger" asp-route-id="@Model.Id"> Apagar Tudo <i class="glyphicon glyphicon-trash"></i></a>
-        <a asp-action="ConfirmationPage" type="button" class="btn btn-outline-secondary" asp-route-id="@Model.Id"> Sair </a>
+        <!-- /<a asp-action="Share" class="btn btn-info" asp-route-id="@Model.Id"> Info <i class="glyphicon glyphicon-folder-open"></i></a> -->
+        <a asp-action="ConfirmationPage" class="btn btn-outline-secondary" asp-route-id="@Model.Id"> Sair <i class="glyphicon glyphicon-log-out"></i></a>
     </p>
-</div>
-<div>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr class="table-secondary">
-                <th>
-                    @Html.DisplayName("Nome do Documento")
-                </th>
-                <th>
-                    @Html.DisplayName("Data/Hora de Expiração")
-                </th>
-                <th>
-                </th>
-            </tr>
-        </thead>
-        @if (Model.Documents.Any())
-        {
-            <tbody>
-
-                @foreach (var item in Model.Documents)
-                {
-                    //FIXME
-                    string date = (item.InstantExpiration - (item.InstantExpiration.AddHours(3) - item.InstantExpiration.AddMilliseconds(0.1))).ToString();
-
-                <tr class="table-info">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayName(date)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
-                        <a asp-action="Delete" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i></a>
-                        @if (item.Attachment == null)
-                        {
-                <a asp-action="Upload" class="btn btn-default" asp-route-id="@item.Id">Upload </a>}
-                        @if (item.Attachment != null)
-                        {
-                <a asp-action="Download" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-download-alt"></i></a>}
-                    </td>
+    </div>
+    <div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayName("Nome do Documento")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Data/Hora de Expiração")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Opções")
+                    </th>
                 </tr>
-                }
-            </tbody>
-        }
-    </table>
+            </thead>
+            @if (Model.Documents.Any())
+            {
+                <tbody>
 
-</div>
+                    @foreach (var item in Model.Documents)
+                    {
+                        //FIXME
+                        string date = item.InstantExpiration.AddHours(-3).ToString();
+
+                    <tr class="table-info">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayName(date)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i></a>
+                            @if (item.Attachment == null)
+                            {
+                    <a asp-action="Upload" asp-route-id="@item.Id"><i class="glyphicon glyphicon-cloud-upload"></i></a>}
+                            @if (item.Attachment != null)
+                            {
+                    <a asp-action="Download" asp-route-id="@item.Id"><i class="glyphicon glyphicon-cloud-download"></i></a>}
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            }
+        </table>
+
+    </div>

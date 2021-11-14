@@ -1,4 +1,4 @@
-@model EasyShareApp.Models.Document
+@model EasyShareApp.Models.Register
 
 @{ ViewData["Title"] = "Share"; }
 
@@ -6,25 +6,44 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Arquivo compartilhado</h4>
+                <h4 class="modal-title">Info de acesso</h4>
             </div>
             <div class="modal-body">
-                <hr />
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
-                    <dd>@Html.DisplayFor(model => model.Name)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.InstantExpiration)</dt>
-                    <dd>@Html.DisplayFor(model => model.InstantExpiration)</dd>
-                </dl>
+                <div class="col-md-10 text-center">
+                    <label asp-for="Key" class="control-label"></label>
+                    <input type="text" value="@Model.Key" id="key">
+                    <button class="glyphicon glyphicon-copy clipboard"></button>
+                </div>
             </div>
             <div class="modal-footer">
-                @if (Model.Attachment != null)
-                {
-                    <form asp-action="Download" asp-route-id="@Model.Id">
-                        <input type="submit" class="btn btn-primary" value="Download" />
-                    </form>
-                }
+                <a href="javascript: history.go(-1)" class="btn btn btn-outline-secondary">Voltar</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".clipboard").click(function () {
+
+                /* Get the text field */
+                var copyText = document.getElementById("key");
+
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                navigator.clipboard
+                    .writeText(copyText.value)
+                    .then(() => {
+                        alert("Copiado com sucesso :)");
+                    })
+                    .catch(() => {
+                        alert("Oops! Alguma coisa deu errado :(");
+                    });
+            });
+        })
+    </script>
+}
